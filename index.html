@@ -84,7 +84,7 @@
 	        </tr>
 	        <tr>
 	            <td colspan="4" style="text-align:right;">TOTAL</td>  
-	            <td class="sub-total" style="border-top:solid black 1px"><span id="Total"></span></td>	        
+	            <td class="sub-total" style="border-top:solid black 1px"><span id="totalfinal"></span></td>	        
 	        </tr>
 	    </tfoot>	    
 	</table>
@@ -100,12 +100,14 @@
 		let discountdifference = 0;
 		const taxperc = 0.12;
 		let total = 0;
+		let tax = 0;
 
 
 	    function calculate() {
 
 			subtotal = 0;
 			total = 0;
+			discountdifference = 0;
 
 			//First, 
 			linetotal = document.querySelector("#line-1-price").value * document.querySelector("#line-1-quantity").value;
@@ -143,34 +145,17 @@
 
 
 			let disccountdifference = subtotal * 0.1;
-			document.querySelector("#discount").innerHTML = (subtotal >= 250)? "$ " + disccountdifference.toFixed(2) : "$ " + subtotal;
+			console.log(disccountdifference)
+			document.querySelector("#discount").innerHTML = (subtotal >= 250)? "$ " + disccountdifference.toFixed(2) : "$ " + 0;
 			subtotal -= disccountdifference;
 			tax = subtotal * taxperc;
 
 
-			document.querySelector("#tax").innerHTML = tax;
+			document.querySelector("#tax").innerHTML = "$ " + tax.toFixed(2);
 
-			
+			total = tax + subtotal;
 
-
-            /*
-
-                Use the following steps to complete your assignment.
-
-                @NOTE: Do not include these comments in your final submission. 
-                       Your final submission MUST include your own comments.
-
-                1. Retrieve the quantities & price for each line
-                2. Calculate the total for each line
-                3. Display each line total to the screen (Be sure to display the result to two decimal places)
-                4. Keep a running total for all lines
-                5. Display the sub-total to screen
-                6. Calculate if the discount should be applied, if so display the discount value to the screen
-                7. Calculate the tax on the sub-total
-                8. Display the calculated to the screen to two decimal places
-                
-            */
-
+			document.querySelector("#totalfinal").innerHTML = "$ " + total.toFixed(2);
 	    }
 		
 		//I will 
