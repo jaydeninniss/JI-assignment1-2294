@@ -101,42 +101,46 @@
 
 	    function calculate() {
 
+			subtotal = 0;
+
 			//First, 
-			linetotal = document.querySelector("#line-1-price").value * document.querySelector("#line-1-quantity").value
-			document.querySelector("#line-1").innerHTML = linetotal.toFixed(2);
+			linetotal = document.querySelector("#line-1-price").value * document.querySelector("#line-1-quantity").value;
+			document.querySelector("#line-1").innerHTML = "$ " + linetotal.toFixed(2);
 
 			subtotal += linetotal;
 
 			
 
-			linetotal = document.querySelector("#line-2-price").value * document.querySelector("#line-2-quantity").value
-			document.querySelector("#line-2").innerHTML = linetotal.toFixed(2);
+			linetotal = document.querySelector("#line-2-price").value * document.querySelector("#line-2-quantity").value;
+			document.querySelector("#line-2").innerHTML = "$ " + linetotal.toFixed(2);
 
 			subtotal += linetotal;
 
 
 
-			linetotal = document.querySelector("#line-3-price").value * document.querySelector("#line-3-quantity").value
-			document.querySelector("#line-3").innerHTML = linetotal.toFixed(2);
+			linetotal = document.querySelector("#line-3-price").value * document.querySelector("#line-3-quantity").value;
+			document.querySelector("#line-3").innerHTML = "$ " + linetotal.toFixed(2);
 
 			subtotal += linetotal;
 
 
-			linetotal = document.querySelector("#line-4-price").value * document.querySelector("#line-4-quantity").value
-			document.querySelector("#line-4").innerHTML = linetotal.toFixed(2);
+			linetotal = document.querySelector("#line-4-price").value * document.querySelector("#line-4-quantity").value;
+			document.querySelector("#line-4").innerHTML = "$ " + linetotal.toFixed(2);
 
 			subtotal += linetotal;
 
 
-			linetotal = document.querySelector("#line-5-price").value * document.querySelector("#line-5-quantity").value
-			document.querySelector("#line-5").innerHTML = linetotal.toFixed(2);
+			linetotal = document.querySelector("#line-5-price").value * document.querySelector("#line-5-quantity").value;
+			document.querySelector("#line-5").innerHTML = "$ " + linetotal.toFixed(2);
 
 			subtotal += linetotal;
 
-			console.log(linetotal)
-			console.log(subtotal)
+			console.log(linetotal);
+			console.log(subtotal);
 
-			document.querySelector("#sub-total").innerHTML = subtotal
+			document.querySelector("#sub-total").innerHTML = "$ " + subtotal;
+
+			document.querySelector("#discount").innerHTML = (subtotal >= 250)? "yup" : "nope";
 
 			
 
