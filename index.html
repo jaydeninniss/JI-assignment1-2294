@@ -94,6 +94,8 @@
 
 	<script>
 
+		//Jayden Inniss - A01363743 - Web Scripting 1 - Assignment 1
+
 	
 		const cal_btn = document.querySelector("#calculate");
 
@@ -101,7 +103,7 @@
 		let subtotal = 0;
 		//Ok, first, this line above is creating a variable that I will use as the subtotal (I used let so that I can update its value as we go)
 		let discountdifference = 0;
-		//Same as above - This will be the amount deducted if the disocunt applies
+		//Same as above - This will be the amount deducted if/when the discount is applied
 		const taxperc = 0.12;
 		//This is the constant variable that will be multiplied to apply the tax (12%)
 		let total = 0;
@@ -117,11 +119,11 @@
 			total = 0;
 			discountdifference = 0;
 			tax = 0;
-			//These four lines reset the total, subtotal, tax and discount variables back to zero so that we can run the code a second time wihtout refreshing the page and it keeping old values
+			//These four lines reset the total, subtotal, tax and discount variables back to zero so that we can run the code a second time without refreshing the page and it keeping old values
 
 			//This first line, uses the document.querySelector and the ID "#line-1-price" to find the value that has been entered on line one for the price. The .value will give us only the value, not the string. Then it does the same thing to the quantity on line 1. It uses document.querySelector, the Id and then .value to get only the value of the entered quantity. These two values are multiplied together and this product is assigned to the varibale linetotal.
 			linetotal = document.querySelector("#line-1-price").value * document.querySelector("#line-1-quantity").value;
-			//Next, this line uses document.querySelector, the Id of the span, and innerHTML which allows us to update the text in the span. It updates this span with a dollar sign concatenated with the linetotal value we updated in the first line! (Concatenation is the combining of strings using + operator.) The last part, .toFixed(2) only displays the value up to 2 decimal places, essentailly rounding to two decimal places. (This doesnt change the value of the variable, only this display!)
+			//Next, this line uses document.querySelector, the Id of the span, and innerHTML which allows us to update the text in the span. It updates this span with a dollar sign concatenated with the linetotal value we updated in the first line! (Concatenation is the combining of strings using + operator.) The last part, .toFixed(2) only displays the value up to 2 decimal places, essentially rounding to two decimal places. (This doesn't change the value of the variable, only this display!)
 			document.querySelector("#line-1").innerHTML = "$ " + linetotal.toFixed(2);
 
 			subtotal += linetotal;
@@ -171,7 +173,7 @@
 
 
 			//discountdifference is a variable to hold the value that will be subtracted from the sub total
-			//This is a ternary operator, the code inbetween the brackets after the = is the condition. In this case we are 'asking' if the subtotal is greater or equal to 250. If this is true, it will make discountdifference equal 10% of the subtotal. If this is false, it will make the discount value zero!
+			//This is a ternary operator, the code in between the brackets after the = is the condition. In this case we are 'asking' if the subtotal is greater or equal to 250. If this is true, it will make discountdifference equal 10% of the subtotal. If this is false, it will make the discount value zero!
 			discountdifference = (subtotal >= 250) ? subtotal * 0.1 : 0;
 
 			//Now that we know how much the discount should be, we will display it using querySelector and innerHTML. We will use concatenation to add a dollar sign and minus sign as this is a discount, right!
