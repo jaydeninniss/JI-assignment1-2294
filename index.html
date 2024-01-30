@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>MDIA 2294</title>
+	<title>Jayden Inniss - MDIA 2294</title>
 	
 	<style>
 	    thead{
@@ -96,31 +96,48 @@
 
 	
 		const cal_btn = document.querySelector("#calculate");
+
+
 		let subtotal = 0;
+		//Ok, first, this line above is creating a variable that I will use as the subtotal (I used let so that I can update its value as we go)
 		let discountdifference = 0;
+		//Same as above - This will be the amount deducted if the disocunt applies
 		const taxperc = 0.12;
+		//This is the constant variable that will be multiplied to apply the tax (12%)
 		let total = 0;
+		//This variable will be updated to be the final total value at the very end
 		let tax = 0;
+		//This variable is the sum of money added on to the subtotal to apply the tax
 
 
 	    function calculate() {
+			//Creating a function with name calculate
 
 			subtotal = 0;
 			total = 0;
 			discountdifference = 0;
+			tax = 0;
+			//These four lines reset the total, subtotal, tax and discount variables back to zero so that we can run the code a second time wihtout refreshing the page and it keeping old values
 
-			//First, 
+			//This first line, uses the document.querySelector and the ID "#line-1-price" to find the value that has been entered on line one for the price. The .value will give us only the value, not the string. Then it does the same thing to the quantity on line 1. It uses document.querySelector, the Id and then .value to get only the value of the entered quantity. These two values are multiplied together and this product is assigned to the varibale linetotal.
 			linetotal = document.querySelector("#line-1-price").value * document.querySelector("#line-1-quantity").value;
+			//Next, this line uses document.querySelector, the Id of the span, and innerHTML which allows us to update the text in the span. It updates this span with a dollar sign concatenated with the linetotal value we updated in the first line! (Concatenation is the combining of strings using + operator.) The last part, .toFixed(2) only displays the value up to 2 decimal places, essentailly rounding to two decimal places. (This doesnt change the value of the variable, only this display!)
 			document.querySelector("#line-1").innerHTML = "$ " + linetotal.toFixed(2);
 
 			subtotal += linetotal;
+			//This now takes the linetotal, which we updated to be this line's total, and adds that value on to the subtotal.
 
-			
+
+			//We are fini with the first row! Now to the second:
 
 			linetotal = document.querySelector("#line-2-price").value * document.querySelector("#line-2-quantity").value;
+			//This first line is identical to the first row, with the Ids of the price and quantity replaced.
 			document.querySelector("#line-2").innerHTML = "$ " + linetotal.toFixed(2);
+			//Same goes for this line, is the same with the Id of the span swapped for line 2.
 
 			subtotal += linetotal;
+			//This is the same as the first row as well. Now it will take what is already in subtotal and add on what is in linetotal, retaining whats in subtotal! It just adds on!
+			//subtotal is our running total as we move through the rows. Fantastico!
 
 
 
@@ -129,11 +146,15 @@
 
 			subtotal += linetotal;
 
+			//Theres the third row, looks the same with Ids swapped out and we added to subtotal again
+
 
 			linetotal = document.querySelector("#line-4-price").value * document.querySelector("#line-4-quantity").value;
 			document.querySelector("#line-4").innerHTML = "$ " + linetotal.toFixed(2);
 
 			subtotal += linetotal;
+
+			//Fourth line is the same
 
 
 			linetotal = document.querySelector("#line-5-price").value * document.querySelector("#line-5-quantity").value;
@@ -141,25 +162,43 @@
 
 			subtotal += linetotal;
 
+			//Status quo at fifth line as well
+			//We are done with collecting and adding the totals from all of the rows
+
 			document.querySelector("#sub-total").innerHTML = "$ " + subtotal;
+			//This line is displaying the subtotal value with a dollar sign using concatenation. This value is put into the span with Id #sub-total, which a span is near the bottom of the table. 
+			//Subtotal value right now is purely the total of all rows.
 
 
-			let disccountdifference = subtotal * 0.1;
-			console.log(disccountdifference)
-			document.querySelector("#discount").innerHTML = (subtotal >= 250)? "$ " + disccountdifference.toFixed(2) : "$ " + 0;
-			subtotal -= disccountdifference;
+			//discountdifference is a variable to hold the value that will be subtracted from the sub total
+			//This is a ternary operator, the code inbetween the brackets after the = is the condition. In this case we are 'asking' if the subtotal is greater or equal to 250. If this is true, it will make discountdifference equal 10% of the subtotal. If this is false, it will make the discount value zero!
+			discountdifference = (subtotal >= 250) ? subtotal * 0.1 : 0;
+
+			//Now that we know how much the discount should be, we will display it using querySelector and innerHTML. We will use concatenation to add a dollar sign and minus sign as this is a discount, right!
+			document.querySelector("#discount").innerHTML ="- $ " + discountdifference.toFixed(2);
+
+			//Here we are subtracting the discounted amount from the subtotal - Which is 10% if it applies or zero if not. 
+			subtotal -= discountdifference;
+
+			//This is updating the tax variable with the subtotal (discount applied) multiplied by the tax percentage that we defined at the top of the function. This is a better way of doing it rather than writing 12% here, so that we can change the tax percentage in the future without having to find all of the places we are using 12%! Or even change it on the fly (for different countries for example).
 			tax = subtotal * taxperc;
 
 
 			document.querySelector("#tax").innerHTML = "$ " + tax.toFixed(2);
+			//Showing the value of tax in the span with ID #tax, concatenated with a dollar sign and value rounded to two decimal places
 
 			total = tax + subtotal;
+			//This adds the tax value (which is 12% of subtotal after discount) to the subtotal. Giving us a final result with discount applied conditionally and the tax applied.
 
 			document.querySelector("#totalfinal").innerHTML = "$ " + total.toFixed(2);
+			//Finally, we display the total value concatenated with a dollar sign and value rounded to 2 decimal places, using queryselector and innerHTML! Tada!
 	    }
 		
-		//I will 
+		//This line 'listens' for a click on the button that we defined above as cal_btn. When the button is pressed one time ("click" means one click, dblclick is double click), it will run function calculate.
 		cal_btn.addEventListener("click", calculate);
+
+
+		//P.S. Now that I am done and writing comments, I would have done this a little different next time: I wouldnt have figured out what the discounted value is and then subtracted it from the subtotal! Thats two steps, you can do in one! Just multiply by .9! Thats the same as multiplying by .1 and subtracting! AND! All of that could have been done inside of the ternary operator! AND!!! Same for the tax, just multiply by 1.12 and youre done, no need to find out how much tax is, then add it on. All could have been done in one line. The OCD might make me redo later this just so I can sleep. 
 
     </script>
 </body>
